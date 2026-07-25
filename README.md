@@ -4,23 +4,21 @@ Implementaciones en Rust de algoritmos de elección de líder para la materia **
 
 ## Algoritmos incluidos
 
-| Archivo | Algoritmo | Referencia |
-|---------|-----------|------------|
-| `bully.rs` | Bully (elección por jerarquía) | Garcia-Molina, 1982 |
-| `ring.rs` | Ring / Chang-Roberts (elección en anillo) | Chang & Roberts, 1979 |
+| Directorio | Algoritmo | Referencia |
+|------------|-----------|------------|
+| `Bully/` | Bully (elección por jerarquía) | Garcia-Molina, 1982 |
+| `Ring/` | Ring / Chang-Roberts (elección en anillo) | Chang & Roberts, 1979 |
 
 Ambos simulan 5 procesos (P1..P5) comunicándose exclusivamente por mensajes (`mpsc::channel`), sin memoria compartida mutable. Cada escenario incluye la inyección de una falla crash-stop del líder para demostrar la convergencia del protocolo.
 
 ## Compilación y ejecución
 
-No requiere dependencias externas (solo `std`).
+Cada algoritmo es un proyecto Cargo independiente. No requiere dependencias externas (solo `std`).
 
 ```bash
-rustc bully.rs -o bully && ./bully
-rustc ring.rs -o ring && ./ring
+cargo run --manifest-path Bully/Cargo.toml
+cargo run --manifest-path Ring/Cargo.toml
 ```
-
-O con Cargo (requiere mover los archivos a `src/bin/` o configurar `[[bin]]` en `Cargo.toml`).
 
 ## Diseño
 
