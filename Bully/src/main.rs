@@ -161,6 +161,7 @@ impl Node {
                 println!("[P{}] Recibo OK de P{}; cedo la candidatura.", self.id, from);
                 self.awaiting_ok = false;
                 self.election_start = None;
+                self.last_heartbeat = Instant::now();
             }
             Message::Coordinator { leader } => {
                 self.current_leader = Some(leader);
